@@ -7,6 +7,174 @@
     <title>Vite + TS</title>
   </head>
   <body>
+     <style>
+      :root {
+        --primary-color: #3a86ff;
+        --secondary-color: #8338ec;
+        --background-color: #f8f9fa;
+        --text-color: #343a40;
+        --success-color: #38b000;
+        --delete-color: #ff006e;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --border-radius: 8px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 20px;
+      }
+
+      #app {
+        max-width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 2.5rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+      }
+
+      .input-group {
+        display: flex;
+        margin-bottom: 20px;
+        gap: 10px;
+      }
+
+      #todo-input {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      #todo-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(58, 134, 255, 0.2);
+      }
+
+      #add-btn {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0 20px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      #add-btn:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+      }
+
+      #todo-list {
+        list-style: none;
+      }
+
+      #todo-list li {
+        padding: 15px;
+        background: white;
+        margin-bottom: 10px;
+        border-radius: var(--border-radius);
+        border-left: 4px solid var(--primary-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      #todo-list li:hover {
+        transform: translateX(5px);
+        box-shadow: var(--shadow);
+      }
+
+      .todo-text {
+        flex-grow: 1;
+      }
+
+      .todo-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .done-btn, .delete-btn {
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.2s;
+      }
+
+      .done-btn {
+        background-color: var(--success-color);
+        color: white;
+      }
+
+      .delete-btn {
+        background-color: var(--delete-color);
+        color: white;
+      }
+
+      .done-btn:hover, .delete-btn:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+      }
+
+      .completed {
+        opacity: 0.6;
+        text-decoration: line-through;
+        border-left-color: var(--success-color);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 480px) {
+        #app {
+          padding: 20px;
+          margin: 20px auto;
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
     <div id="app">
 
       <h1>Todo List</h1>
